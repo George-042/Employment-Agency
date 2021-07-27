@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User editor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<div class="container mt-5 mb-5">
+    <form th:action="@{/user/status}" method="post">
+        <div class="mb-3">
+            <label class="mr-3" th:each="status : ${statuses}">
+                <input class="mr-2" type="checkbox" th:name="${status}" th:text="${status}">
+            </label>
+        </div>
+        <input type="hidden" th:value="${usr.id}" name="userId">
+        <button class="btn btn-success" type="submit">Save</button>
+    </form>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

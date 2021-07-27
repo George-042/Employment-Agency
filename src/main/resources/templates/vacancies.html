@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Vacancies</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+    <h5 class="h5 my-0 me-md-auto fw-normal">Employee of the Month</h5>
+    <nav class="my-2 my-md-0 me-md-3 ml-2">
+        <a class="p-2 text-dark" href="/">Main page</a>
+        <a class="p-2 text-dark" href="/vacancy">Vacancies</a>
+        <a sec:authorize="hasAuthority('COMPANY')" class="p-2 text-dark" href="/vacancy/add">Add new vacancy</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">About us</a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-dark" href="/user">User editor</a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-dark" href="/user/forms">User forms</a>
+    </nav>
+    <header class="mr-2 ml-2" th:insert="parts/search.html"></header>
+    <div>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary ml-2" th:href="@{/login}">Sign in</a>
+        <form class="ml-2" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <span class="mr-2 font-weight-bold" sec:authentication="principal.username"></span>
+            <input type="submit" value="Sign out" class="btn btn-outline-primary ml-2">
+        </form>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1>Find your favorite job</h1>
+    <div sec:authorize="hasAuthority('USER')" class="mb-3">Want to get a job? <a href="/form/add">Send us your CV</a>
+        so that our administrators can contact you.</div>
+    <div th:each="vacancy : ${vacancies}" class="alert alert-info mt-2">
+        <div class="text-center mb-3">
+            <h4>Vacancy name:</h4>
+                <h3 th:text="${vacancy.name}"/>
+        </div>
+        <h4>Salary:</h4>
+            <p th:text="${vacancy.salary} + ' BYR'"/>
+        <h4>Owner:</h4>
+            <p th:text="${vacancy.user.getUsername()}"/>
+        <h4>Company name:</h4>
+            <p th:text="${vacancy.companyName}"/>
+<!--        <div class="mb-2"  th:if="${vacancy.filename}">-->
+<!--            <img th:src="@{/img/{filename}(filename = ${vacancy.filename})}" alt="Company photo" width="300px" height="200px"/>-->
+<!--        </div>-->
+        <a th:href="'/vacancy/' + ${vacancy.id}" class="btn btn-warning">Detail</a>
+    </div>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

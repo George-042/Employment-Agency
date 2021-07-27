@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<div class="container mt-5">
+    <div class="alert alert-info mt-2">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Age</th>
+                <th>Education</th>
+                <th>Experience</th>
+                <th>ExpSalary</th>
+                <th>ExpJob</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            <tbody th:each="form : ${forms}">
+            <tr>
+                <td th:text="${form.name}"></td>
+                <td th:text="${form.age}"></td>
+                <td th:text="${form.education}"></td>
+                <td th:text="${form.experience}"></td>
+                <td th:text="${form.expectedSalary} + ' BYN'"></td>
+                <td th:text="${form.expectedJob}"></td>
+                <td th:text="${form.user.getUsername()}"></td>
+                <td th:text="${form.email}"></td>
+                <td th:text="'+375' + ${form.user.getPhone()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

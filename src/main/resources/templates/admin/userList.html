@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<div class="container mt-5">
+    <div class="alert alert-info mt-2">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            <tbody th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getUsername()}"></td>
+                <td th:each="role : ${user.getRoles()}" th:text="${role} + ','"></td>
+                <td th:each="status : ${user.getClientStatuses()}" th:text="${status}"></td>
+                <td><a th:href="@{/user/{id}(id=${user.getId()})}" th:text="'Edit role'">reference</a></td>
+                <td><a th:href="@{/user/status/{id}(id=${user.getId()})}" th:text="'Edit status'">reference2</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

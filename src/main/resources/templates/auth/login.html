@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</head>
+<body class="text-center">
+
+<main class="d-flex justify-content-center flex-column flex-md-row p-3 px-md-4 mb-3 border-bottom">
+    <form th:action="@{/login}" method="post">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <label for="inputUsername" class="visually-hidden">Username</label>
+        <input type="text" maxlength="20" id="inputUsername" name="username" class="form-control mb-3"
+               placeholder="Username" required="" autofocus="">
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control mb-3" placeholder="Password"
+               required="">
+        <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
+
+        <p class="small text-center text-gray-soft">Don't have an account yet?
+            <a href="/registration">Sign up</a></p>
+        <p class="mt-5 mb-3 text-muted">©GeorgProg 2021</p>
+        <div class="form-control text-danger" th:if="${param.error}">
+            <p>Invalid username and password.</p>
+        </div>
+        <div class="form-control text-danger" th:if="${param.logout}">
+            <p>You have been logged out.</p>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Creating vacancy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Create a new vacancy</h1>
+    <form th:action="@{/vacancy/add}" method="post"> <!--enctype="multipart/form-data"-->
+        <input type="text" name="name" placeholder="Job title" class="form-control mb-4" required autofocus>
+        <input type="number" name="salary" placeholder="Salary" class="form-control mb-4" min="0" max="100000"
+               step="0.1" required>
+        <input type="text" name="schedule" placeholder="Schedule" class="form-control mb-4" required>
+        <input type="text" name="expectedEducation" placeholder="Expected education" class="form-control mb-4" required>
+        <input type="text" name="expectedExperience" placeholder="Expected experience" class="form-control mb-4"
+               required>
+        <input type="text" name="companyName" placeholder="Company name" class="form-control mb-4" required>
+<!--        <input type="file" name="file" required>-->
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

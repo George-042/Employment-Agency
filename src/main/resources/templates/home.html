@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Employee of the Month</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Start your career</h1>
+                <p class="lead text-muted">Want to find your dream job? Your choice is Employment Agency. Register,
+                    submit your CV, and get your future job.</p>
+                <p>
+                    <a href="/vacancy" class="btn btn-primary my-2">Vacancies</a>
+                    <a href="/form/add" class="btn btn-secondary my-2">Send CV</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

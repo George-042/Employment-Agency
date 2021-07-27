@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+    <h5 class="h5 my-0 me-md-auto fw-normal">Employee of the Month</h5>
+    <nav class="my-2 my-md-0 me-md-3 ml-2">
+        <a class="p-2 text-dark" href="/">Main page</a>
+        <a class="p-2 text-dark" href="/vacancy">Vacancies</a>
+        <a class="p-2 text-dark" href="/#">Support</a>
+        <a class="p-2 text-dark" href="/#">About us</a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="p-2 text-dark" href="/user">User editor</a>
+    </nav>
+    <div>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary ml-2" th:href="@{/login}">Sign in</a>
+        <form class="ml-2" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <span class="mr-2 font-weight-bold" sec:authentication="principal.username"></span>
+            <input type="submit" value="Sign out" class="btn btn-outline-primary ml-2">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

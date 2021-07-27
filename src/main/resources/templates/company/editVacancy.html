@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Editing vacancy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="parts/header.html"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Edit the vacancy</h1>
+    <div th:each="el : ${vacancy}">
+        <form th:action="@{'/vacancy/' + ${el.id} + '/edit'}" method="post">
+            <input type="text" th:value="${el.name}" name="name" placeholder="Job title" class="form-control mb-4"
+                   required>
+            <input type="number" th:value="${el.salary}" name="salary" placeholder="Salary" class="form-control mb-4"
+                   min="0" max="100000" step="0.1" required>
+            <input type="text" th:value="${el.schedule}" name="schedule" placeholder="Schedule"
+                   class="form-control mb-4" required>
+            <input type="text" th:value="${el.expectedEducation}" name="expectedEducation"
+                   placeholder="Expected education" class="form-control mb-4" required>
+            <input type="text" th:value="${el.expectedExperience}" name="expectedExperience"
+                   placeholder="Expected experience" class="form-control mb-4" required>
+            <input type="text" th:value="${el.companyName}" name="companyName"
+                   placeholder="Company name" class="form-control mb-4" required>
+            <button type="submit" class="btn btn-success" autofocus>Update</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="parts/footer.html"></footer>
+
+</body>
+</html>

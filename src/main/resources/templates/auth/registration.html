@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</head>
+<body class="text-center">
+
+<main class="d-flex justify-content-center flex-column flex-md-row p-3 px-md-4 mb-3 border-bottom">
+    <form th:action="@{/registration}" method="post">
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        <label for="inputUsername" class="visually-hidden">Username</label>
+        <input type="text" minlength="3" maxlength="20" id="inputUsername" name="username" class="form-control mb-3"
+               placeholder="Username" required="" autofocus="">
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control mb-3" placeholder="Password"
+               required="" minlength="3" maxlength="16">
+        <label for="inputPhone" class="visually-hidden">Phone</label>
+        <input type="text" id="inputPhone" name="phone" class="form-control mb-3" placeholder="(**)***-****"
+               required="" maxlength="9" minlength="9">
+        <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign up</button>
+
+        <p class="small text-center text-gray-soft">Already registered? <a th:href="@{/login}">Sign in</a></p>
+        <p class="mt-5 mb-3 text-muted">©GeorgProg 2021</p>
+        <div class="form-control text-danger" th:if="${message}">
+            <p th:text="${message}"></p>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>
